@@ -1,0 +1,2 @@
+
+include <../xNopSCADlib/core.scad>
