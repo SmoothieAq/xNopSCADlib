@@ -10,8 +10,8 @@ function xextrusion_length(type)			= type[12];
 function axextrusion(xextrusion, l, material, has_corner_hole) = axcreate(xextrusion, [material, has_corner_hole, l], 10);
 
 module xextrusion(extrusion, l) {
-	length = nnv(l, xextrusion_length(type));
-	color(material_color(xextrusion_material(type)))
+	length = nnv(l, xextrusion_length(extrusion));
+	color(material_color(xextrusion_material(extrusion)))
 		extrusion(extrusion, length, xextrusion_has_corner_hole(extrusion));
 }
 

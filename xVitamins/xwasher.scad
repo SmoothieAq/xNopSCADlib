@@ -13,15 +13,16 @@ function axwasher(washer, material, nyloc) = axcreate(washer, [material, type, p
 module xwasher(washer, type) {
 	xtype = nnv(type, xwasher_type(washer));
 	colorize(material_color(xwasher_material(washer)))
-	if (xtype == WasherSoft) {
-		assert(washer_soft(washer));
-		washer(washer);
-	} else {
-		assert(!washer_soft(washer));
-		if (xtype == WasherHard) washer(washer);
-		else if (xtype == WasherStar) star_washer(washer);
-		else if (xtype == WasherSpring) spring_washer(washer);
-		else if (xtype == WasherPenny) penny_washer(washer);
-		else if (xtype == WasherPrinted) printed_washer(washer, xwasher_printed_name(washer));
-	}
+		explode(xwasher_thickness(washer) * 6)
+			if (xtype == WasherSoft) {
+				assert(washer_soft(washer));
+				washer(washer);
+			} else {
+				assert(!washer_soft(washer));
+				if (xtype == WasherHard) washer(washer);
+				else if (xtype == WasherStar) star_washer(washer);
+				else if (xtype == WasherSpring) spring_washer(washer);
+				else if (xtype == WasherPenny) penny_washer(washer);
+				else if (xtype == WasherPrinted) printed_washer(washer, xwasher_printed_name(washer));
+			}
 }

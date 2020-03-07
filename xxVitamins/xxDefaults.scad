@@ -7,3 +7,5 @@ $screw_spacing = undef;
 $nut_spacing = undef;
 $screw_plate = 2;
 $nut_plate = 2;
+
+$debug=1;
