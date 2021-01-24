@@ -52,7 +52,7 @@ xassembly("main") {
 }
 
 if($preview && is_undef($animating)) {
-//	main_assembly();
+	main_assembly();
 }
 
 
