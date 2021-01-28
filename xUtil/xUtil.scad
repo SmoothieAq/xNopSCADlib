@@ -53,3 +53,6 @@ module xhole(r, h, horizontal) {
 		else
 			poly_cylinder(r = r, h = h, center = true);
 }
+
+function len2(vek2) = sqrt(sqr(vek2.x)+sqr(vek2.y));
+function a2(vek2) = atan(vek2.y/vek2.x) - (vek2.x < 0 ? 180 : 0);
