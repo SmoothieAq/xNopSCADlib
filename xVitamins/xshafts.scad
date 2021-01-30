@@ -1,5 +1,5 @@
 
-include <NopSCADlib/vitamins/rods.scad>
+use <NopSCADlib/vitamins/rod.scad>
 
 use <../xNopSCADlib/vitamins/carbon_tube.scad>
 

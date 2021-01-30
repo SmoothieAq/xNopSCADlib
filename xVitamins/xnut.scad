@@ -38,7 +38,7 @@ module xnut_hole(nut, depth, spacing, washer, twist, horizontal) {
 module xnut_plate(nut, depth, plate, washer) {
 	thick = xnut_thickness(nut);
 	xplate = nnv(plate, thick * 2);
-	xheadr = (washer ? washer_diameter(washer != true ? washer : nut_washer(nut)) / 2 * 1.05 : nut_radius(nut) * 1.15);
+	xheadr = (washer ? washer_diameter(washer != true ? washer : nut_washer(nut)) / 2 * 1.05 : nut_radius(nut));
 
 	translate([0, 0, -nnv(depth, 0) * thick - xplate])
 		cylinder(r = xheadr, h = xplate);

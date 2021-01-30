@@ -3,6 +3,7 @@ include <../xNopSCADlib/core.scad>
 
 use <NopSCADlib/vitamins/leadnut.scad>
 use <NopSCADlib/vitamins/spring.scad>
+use <dotSCAD/ptf/ptf_rotate.scad>
 
 function xleadnut_material(type)	= nnv(type[14], MaterialSteel);
 function xleadnut_color(type)		= type[15];
@@ -11,6 +12,11 @@ function xleadnut_antib_h(type)		= type[17];
 function xleadnut_antib_spring(type)= type[18];
 
 function axleadnut(xleadnut, material, col, antib) = antib ? axcreate(xleadnut, [material, col, antib[0], antib[1], antib[2]], 14) : axcreate(xleadnut, [material, col]);
+
+function leadnut_screw_poss(type) = let(
+	holes = leadnut_holes(type)
+) [	for (i = [0 : holes - 1], a = i * 360 / holes + 180)
+	ptf_rotate([leadnut_hole_pitch(type), 0, leadnut_flange_t(type)], [0,0,a]) ]; //! List of screw hole positions
 
 module xleadnut(xleadnut) {
 	color(material_color(xleadnut_material(xleadnut),xleadnut_color(xleadnut))) {

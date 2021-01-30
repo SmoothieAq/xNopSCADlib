@@ -49,8 +49,9 @@ function axxscrew(xscrew, l, t, r, washer, depth, xnut, nut_washer, nut_depth, t
 
 function axxscrew_setLeng(xscrew, t, r, washer, depth, xnut, nut_washer, nut_depth, twist, thick, spacing, nut_spacing, horizontal, tslot_nut, extrusion, insert, flip, plate, nut_plate) = let (
 		axxscrew = axxscrew(xscrew, undef, t, r, washer, depth, xnut, nut_washer, nut_depth, twist, thick, spacing, nut_spacing, horizontal, tslot_nut, extrusion, insert, flip, plate, nut_plate),
-		xleng = screw_longer_than(xxscrew_thick(axxscrew) - xxscrew_head_leng(axxscrew) + xxscrew_fastner_leng(axxscrew, 0.5))
+		xleng = screw_longer_than(xxscrew_thick(axxscrew) + xxscrew_head_leng(axxscrew) + xxscrew_fastner_leng(axxscrew, 0.5))
 	)
+	echo("setLeng",axxscrew[0],thick=xxscrew_thick(axxscrew),xleng=xleng,head_leng=xxscrew_head_leng(axxscrew),fastner_leng=xxscrew_fastner_leng(axxscrew,0.5))
 	axscrew(axxscrew, l = xleng);
 
 function axxscrew_setLengAdjustDepth(xscrew, t, r, washer, depth, xnut, nut_washer, nut_depth, twist, thick, spacing, nut_spacing, horizontal, tslot_nut, extrusion, insert, flip, plate, nut_plate) = let (
@@ -103,7 +104,7 @@ function axxscrew_setLengAdjustThickDown(xscrew, t, r, washer, depth, xnut, nut_
 
 
 module xxscrew(screw) translate(xxscrew_translate(screw)) rotate(xxscrew_rotate(screw)) {
-	if ($debug > 1) echo("xxscrew", xxscrew_descr(screw)); echo("***",xxscrew_depth(screw),screw[25]);
+	if ($debug > 1) echo("xxscrew", xxscrew_descr(screw));
 	assert(is_list(screw) && is_string(screw[0]), "The screw argument does not seem to be a xscrew nor a screw");
 	xwasher = xxscrew_washer(screw);
 	xscrew(screw, depth = xxscrew_depth(screw), washer = xwasher, twist = xxscrew_twist(screw), horizontal = xxscrew_horizontal(screw));

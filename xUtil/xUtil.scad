@@ -51,7 +51,7 @@ module xhole(r, h, horizontal) {
 		if (horizontal)
 			teardrop_plus(r = r, h = h);
 		else
-			poly_cylinder(r = r, h = h, center = true);
+			poly_cylinder(r = r, h = h, center = true, sides=max(round(8 * r), 3));
 }
 
 function len2(vek2) = sqrt(sqr(vek2.x)+sqr(vek2.y));
