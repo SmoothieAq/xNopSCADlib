@@ -5,11 +5,11 @@ use <NopSCADlib/vitamins/nut.scad>
 use <NopSCADlib/vitamins/washer.scad>
 use <xwasher.scad>
 
-function xnut_material(type)	= nnv(type[10], MaterialSteel);
-function xnut_nyloc(type)		= nnv(type[11], false);
+function xnut_material(type)	= nnv(type[11], MaterialSteel);
+function xnut_nyloc(type)		= nnv(type[12], false);
 function xnut_thickness(type)	= nut_thickness(type, xnut_nyloc(type));
 
-function axnut(nut, material, nyloc) = axcreate(nut, [material, nyloc], 10);
+function axnut(nut, material, nyloc) = axcreate(nut, [material, nyloc], 11);
 
 module xnut(nut, depth, washer, twist, horizontal) {
 	xtwist = nnv(twist, horizontal ? 30 : 0);
