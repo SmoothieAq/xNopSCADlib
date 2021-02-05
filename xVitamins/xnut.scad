@@ -9,6 +9,9 @@ function xnut_material(type)	= nnv(type[11], MaterialSteel);
 function xnut_nyloc(type)		= nnv(type[12], false);
 function xnut_thickness(type)	= nut_thickness(type, xnut_nyloc(type));
 
+function xnut_names() = ["material","nyloc"];
+function xnut_descr(type) = descr(type, xnut_names(), 11);
+
 function axnut(nut, material, nyloc) = axcreate(nut, [material, nyloc], 11);
 
 module xnut(nut, depth, washer, twist, horizontal) {
@@ -18,7 +21,11 @@ module xnut(nut, depth, washer, twist, horizontal) {
 		explode(10)
 			translate([0, 0, -nnv(depth, 0) * xnut_thickness(nut) + (washer ? xwasher_thickness(washer != true ? washer : nut_washer(nut)) : 0)])
 				rotate([0, 0, xtwist])
-					nut(nut, xnut_nyloc(nut), xnut_material(nut) == MaterialBrass, xnut_material(nut) == MaterialNylon);
+					if (search("sliding_t",nut[0]) || search("hammer",nut[0]))
+						translate([0,0,nut[4]-nut[3]])
+							sliding_t_nut(nut);
+					else
+						nut(nut, xnut_nyloc(nut), xnut_material(nut) == MaterialBrass, xnut_material(nut) == MaterialNylon);
 }
 
 module xnut_hole(nut, depth, spacing, washer, twist, horizontal) {
