@@ -14,7 +14,7 @@ function xnut_descr(type) = descr(type, xnut_names(), 11);
 
 function axnut(nut, material, nyloc) = axcreate(nut, [material, nyloc], 11);
 
-module xnut(nut, depth, washer, twist, horizontal) {
+module xnut(nut, depth, washer, twist, horizontal) { echo(n=nut[0],s=search("sliding_t",nut[0]));
 	xtwist = nnv(twist, horizontal ? 30 : 0);
 
 	colorize(material_color(xnut_material(nut)))
