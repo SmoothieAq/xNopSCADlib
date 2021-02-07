@@ -4,6 +4,7 @@ include <../xNopSCADlib/core.scad>
 use <NopSCADlib/vitamins/nut.scad>
 use <NopSCADlib/vitamins/washer.scad>
 use <xwasher.scad>
+use <dotSCAD/util/sub_str.scad>;
 
 function xnut_material(type)	= nnv(type[11], MaterialSteel);
 function xnut_nyloc(type)		= nnv(type[12], false);
@@ -21,12 +22,14 @@ module xnut(nut, depth, washer, twist, horizontal) { echo(n=nut[0],s=search("sli
 		explode(10)
 			translate([0, 0, -nnv(depth, 0) * xnut_thickness(nut) + (washer ? xwasher_thickness(washer != true ? washer : nut_washer(nut)) : 0)])
 				rotate([0, 0, xtwist])
-					if (search("sliding_t",nut[0]) || search("hammer",nut[0]))
+					if (istnut(nut[0]))
 						translate([0,0,nut[4]-nut[3]])
 							sliding_t_nut(nut);
 					else
 						nut(nut, xnut_nyloc(nut), xnut_material(nut) == MaterialBrass, xnut_material(nut) == MaterialNylon);
 }
+
+function istnut(nam) = sub_str(nam,3,12) == "sliding_t" || sub_str(nam,3,9) == "hammer";
 
 module xnut_hole(nut, depth, spacing, washer, twist, horizontal) {
 	xtwist = nnv(twist, horizontal ? 30 : 0);

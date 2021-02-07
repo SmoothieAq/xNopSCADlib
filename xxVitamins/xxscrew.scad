@@ -29,7 +29,7 @@ function xxscrew_horizontal(type) 	= type[33];
 function xxscrew_tslot_nut(type)	= type[34] == true || type[35] ? axtslot_nut(extrusion_screw_tslot_nut(type[35], type, true), material = xextrusion_material(type[35])) : type[34];
 function xxscrew_extrusion(type)	= type[35];
 function xxscrew_insert(type)		= type[36] == true ? screw_insert(type) : type[36];
-function xxscrew_flip(type)			= nnv(type[37], xxscrew_rotate(type).x == 90);
+function xxscrew_flip(type)			= nnv(type[37], xxscrew_rotate(type).x == 180);
 function xxscrew_plate(type)		= nnv(type[38], $screw_plate);
 function xxscrew_nut_plate(type)	= nnv(type[39], $nut_plate);
 
@@ -166,6 +166,11 @@ module xxfastner_hole(screw) translate(xxscrew_translate(screw)) rotate(xxscrew_
 	}
 }
 
+module xxsides(screws) {
+	xxside1(screws);
+	xxside2(screws);
+}
+
 module xxside1(screws) {
 	for (screw = screws)
 		if (!xxscrew_flip(screw))
@@ -232,9 +237,9 @@ module xxpart1(screws, color, noscrew) {
 	if (!noscrew)
 		xxside1(screws);
 	if (!color)
-		xxpart1only() children();
+		xxpart1only(screws) children();
 	else
-		color(color) xxpart1only() children();
+		color(color) xxpart1only(screws) children();
 }
 
 module xxpart2only(screws, tr) {
@@ -258,7 +263,7 @@ module xxpart2(screws, color, noscrew) {
 	if (!noscrew)
 		xxside2(screws);
 	if (!color)
-		xxpart2only() children();
+		xxpart2only(screws) children();
 	else
-		color(color) xxpart2only() children();
+		color(color) xxpart2only(screws) children();
 }
