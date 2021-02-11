@@ -35,3 +35,7 @@ function rail_hole_ps(type, length, first = 0, screws = 100, both_ends = true)  
 ) [ for(i = [first : holes - 1], j = holes - 1 - i)
         if(i < last || both_ends && (j >= first && j < last))
             i * pitch + (leng - (holes - 1) * pitch) / 2 ];
+
+function rail_hole_nps(type,n=2) = let(
+    ps = rail_hole_ps(type)
+) [ for (i = [0:len(ps)-1]) if (!(i%n) || i == len(ps)-1) ps[i] ];
