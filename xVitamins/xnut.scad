@@ -19,7 +19,7 @@ module xnut(nut, depth, washer, twist, horizontal) { echo(n=nut[0],s=search("sli
 	xtwist = nnv(twist, horizontal ? 30 : 0);
 
 	colorize(material_color(xnut_material(nut)))
-		explode(10)
+		explode(istnut(nut[0])?-10:10)
 			translate([0, 0, -nnv(depth, 0) * xnut_thickness(nut) + (washer ? xwasher_thickness(washer != true ? washer : nut_washer(nut)) : 0)])
 				rotate([0, 0, xtwist])
 					if (istnut(nut[0]))
