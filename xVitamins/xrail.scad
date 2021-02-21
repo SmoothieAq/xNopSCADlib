@@ -5,8 +5,9 @@ use <NopSCADlib/vitamins/rail.scad>
 
 function xrail_material(type)		= nnv(type[13], MaterialSteel);
 function xrail_length(type)			= type[14];
+function xrail_carriage(type)       = type[15];
 
-function axrail(xrail, l, material) = axcreate(xrail, [material, l], 13);
+function axrail(xrail, l, material, carriage) = axcreate(xrail, [material, l, carriage], 13);
 
 module xrail(rail, l) {
 	length = nnv(l, xrail_length(rail));
@@ -19,7 +20,7 @@ module xrail_assembly(rail, pos, l) {
     xrail(rail, l);
     xpos = nnv(pos, nnv(l, xrail_length(rail))/2);
     translate([xpos,0,0])
-        carriage(rail_carriage(rail), rail);
+        carriage(xrail_carriage(rail));
 }
 
 function carriage_hole_ps(type) = let (

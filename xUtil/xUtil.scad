@@ -47,11 +47,13 @@ module colorize(colour, onlyIf = true) {
 }
 
 module xhole(r, h, horizontal) {
-	translate([0, 0, h/2])
-		if (horizontal)
-			teardrop_plus(r = r, h = h);
-		else
-			poly_cylinder(r = r, h = h, center = true, sides=max(round(6 * r), 3));
+	if (h)
+		translate([0, 0, h/2])
+			if (horizontal) {
+				teardrop_plus(r = r, h = h);
+			} else {
+				poly_cylinder(r = r, h = h, center = true, sides = max(round(6*r), 3));
+			}
 }
 
 function len2(vek2) = sqrt(sqr(vek2.x)+sqr(vek2.y));
