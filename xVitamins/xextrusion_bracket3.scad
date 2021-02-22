@@ -21,7 +21,7 @@ module xextrusion_bracket3(cut=-1, assembly = true) {
 	rts = [[[180,0,0],[size.x/2+exw/2,0,-tabz]],[[180,0,90],[0,size.x/2+exw/2,-tabz]],[[0,90,0],[tabSizeZ-exw/2,0, -size.x/2-thick]],[[0, 90, 90], [0, tabz-exw/2, -size.x/2-thick]]];
 
 	color(grey(20)) translate([0,0,thick]) {
-		translate([0, 0, -thick/2])
+		translate([0, 0, -thick])
 			rounded_rectangle([exw, exw, thick], r = 3);
 		for (i = [0:3])
 			if (i != cut)
