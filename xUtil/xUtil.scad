@@ -58,3 +58,5 @@ module xhole(r, h, horizontal) {
 
 function len2(vek2) = sqrt(sqr(vek2.x)+sqr(vek2.y));
 function a2(vek2) = atan(vek2.y/vek2.x) - (vek2.x < 0 ? 180 : 0);
+
+function xor(a,b) = (a && !b) || (!a && b);
