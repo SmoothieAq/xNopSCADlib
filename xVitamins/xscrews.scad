@@ -17,4 +17,5 @@ use <xscrew.scad>
 //                                                           e            h
 //                                                           r
 //
-M2p5_cs_cap_screw  = ["M2p5_cs_cap","M2.5 cs cap",hs_cs_cap,2.5, 5.0, 0,0.7,1.5, 18,  M2p5_washer, M2p5_nut,   M2p5_tap_radius,    M2p5_clearance_radius];
+M2p5_cs_cap_screw  = ["M2p5_cs_cap","M2.5 cs cap",hs_cs_cap,2.5, 5.0,      0,  0.7,1.5, 18,  M2p5_washer, M2p5_nut,   M2p5_tap_radius,    M2p5_clearance_radius];
+M2p5_dome_screw    = ["M2p5_dome", "M2.5 dome",   hs_dome,  2.5, 4.2,   1.5,  0.7, 1.5, 17,  M2p5_washer, M2p5_nut,   M2p5_tap_radius,    M2p5_clearance_radius];
