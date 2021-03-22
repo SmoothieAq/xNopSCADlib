@@ -54,7 +54,8 @@ module xscrew_hole(screw, l, depth, spacing, washer, horizontal, twist) {
 	translate([0, 0, nnv(depth, 0) * screw_head_height(screw) + 0.001])
 		xhole(xheadr, xspacing, horizontal);
 	translate([0, 0, - xl - 0.1 - nnv(depth, 0) * screw_head_height(screw)])
-		xhole(screw_radius(screw), xl + 0.2, horizontal);
+		rotate(is_num(horizontal) ? [0,0,horizontal] : [0,0,0])
+			xhole(screw_clearance_radius(screw), xl + 0.2, horizontal);
 }
 
 module xscrew_plate(screw, depth, plate, washer) {
