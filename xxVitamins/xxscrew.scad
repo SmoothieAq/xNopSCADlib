@@ -49,9 +49,9 @@ function axxscrew(xscrew, l, t, r, washer, depth, xnut, nut_washer, nut_depth, t
 
 function axxscrew_setLeng(xscrew, t, r, washer, depth, xnut, nut_washer, nut_depth, twist, thick, spacing, nut_spacing, horizontal, tslot_nut, extrusion, insert, flip, plate, nut_plate) = let (
 		axxscrew = axxscrew(xscrew, undef, t, r, washer, depth, xnut, nut_washer, nut_depth, twist, thick, spacing, nut_spacing, horizontal, tslot_nut, extrusion, insert, flip, plate, nut_plate),
-		xleng = screw_longer_than(xxscrew_thick(axxscrew) + xxscrew_head_leng(axxscrew) + xxscrew_fastner_leng(axxscrew, 0.5))
+		xleng = screw_longer_than(xxscrew_thick(axxscrew) + xxscrew_head_leng(axxscrew) + xxscrew_fastner_leng(axxscrew, 0.55))
 	)
-	echo("setLeng",axxscrew[0],thick=xxscrew_thick(axxscrew),xleng=xleng,head_leng=xxscrew_head_leng(axxscrew),fastner_leng=xxscrew_fastner_leng(axxscrew,0.5))
+	echo("setLeng",axxscrew[0],thick=xxscrew_thick(axxscrew),xleng=xleng,head_leng=xxscrew_head_leng(axxscrew),fastner_leng=xxscrew_fastner_leng(axxscrew,0.55))
 	axscrew(axxscrew, l = xleng);
 
 function axxscrew_setLengAdjustDepth(xscrew, t, r, washer, depth, xnut, nut_washer, nut_depth, twist, thick, spacing, nut_spacing, horizontal, tslot_nut, extrusion, insert, flip, plate, nut_plate) = let (
@@ -61,7 +61,7 @@ function axxscrew_setLengAdjustDepth(xscrew, t, r, washer, depth, xnut, nut_wash
 		dd0 = [xxscrew_depth(axxscrew), xxscrew_nut_depth(axxscrew)],
 		ddmin = [screw_head_type(axxscrew) == hs_cs_cap || screw_head_type(axxscrew) == hs_cs ? 0 : -0.2, xxscrew_fastner_type(axxscrew) != FastnerNut ? 0 : dd0[1] >= 0.99 ? 1 : -0.2],
 		ddmax = [screw_head_type(axxscrew) == hs_cap ? 1.1 : 0, xxscrew_fastner_type(axxscrew) == FastnerNut ? 1.2 : 0],
-		lengMin = xxscrew_thick(axxscrew) + xxscrew_head_leng(axxscrew, ddmax[0]) + xxscrew_fastner_leng(axxscrew, 0.45, ddmax[1]),
+		lengMin = xxscrew_thick(axxscrew) + xxscrew_head_leng(axxscrew, ddmax[0]) + xxscrew_fastner_leng(axxscrew, 0.55, ddmax[1]),
 		xlengMin = screw_longer_than(lengMin),
 		lengMax = xxscrew_thick(axxscrew) + xxscrew_head_leng(axxscrew, ddmin[0]) + xxscrew_fastner_leng(axxscrew, 0.99, ddmin[1]),
 		xxleng = lengMax >= xleng && xleng - leng < abs(xlengMin - leng) * 0.8 ? xleng : xlengMin,
