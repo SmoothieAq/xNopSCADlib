@@ -40,19 +40,22 @@ module xscrew_hole(screw, l, depth, spacing, washer, horizontal, twist) {
 	xtwist = nnv(twist, horizontal ? 30 : 0);
 
 	if (screw_head_type(screw) == hs_cs_cap || screw_head_type(screw) == hs_cs)
-		translate([0, 0, - nnv(depth, 0) + 0.001 - screw_head_radius(screw)])
-			cylinder(h = screw_head_radius(screw) * 1.05, r1 = 0, r2 = screw_head_radius(screw) * 1.05);
+		screw_polysink(screw,sink=nnv(depth, 0) * screw_head_height(screw));
+//		translate([0, 0, - nnv(depth, 0) + 0.001 - screw_head_radius(screw)])
+//			cylinder(h = screw_head_radius(screw) * 1.05, r1 = 0, r2 = screw_head_radius(screw) * 1.05);
 	else if (screw_head_type(screw) == hs_hex)
 		rotate([0, 0, xtwist])
 			translate([0, 0, - nnv(depth, 0) * screw_head_height(screw) + 0.001])
 				linear_extrude(height = screw_head_height(screw) + xspacing)
 					circle(screw_head_radius(screw) * 1.05, $fn = 6);
 	else
-		translate([0, 0, - nnv(depth, 0) * screw_head_height(screw) + 0.001])
-			xhole(xheadr, screw_head_height(screw) + xspacing, horizontal);
+		rotate(is_num(horizontal) ? [0,0,horizontal] : [0,0,0])
+			translate([0, 0, - nnv(depth, 0) * screw_head_height(screw) + 0.001])
+				xhole(xheadr, screw_head_height(screw) + xspacing, horizontal);
 
 	translate([0, 0, nnv(depth, 0) * screw_head_height(screw) + 0.001])
-		xhole(xheadr, xspacing, horizontal);
+		rotate(is_num(horizontal) ? [0,0,horizontal] : [0,0,0])
+			xhole(xheadr, xspacing, horizontal);
 	translate([0, 0, - xl - 0.1 - nnv(depth, 0) * screw_head_height(screw)])
 		rotate(is_num(horizontal) ? [0,0,horizontal] : [0,0,0])
 			xhole(screw_clearance_radius(screw), xl + 0.2, horizontal);
